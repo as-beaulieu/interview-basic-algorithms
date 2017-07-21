@@ -1,0 +1,179 @@
+Interview Questions
+
+How many Looping constructs are present in Go programming language?
+    Only one loop - for.
+
+What is the default value of type bool in Go?
+    false
+
+In case of Constants which type of expressions are evaluated at compile time and which are evaluated at run time?
+    As a rule Constants are evaluated (determined) at compile time and never at run time. 
+
+Which one of the following is correct?
+
+        a. const Pi = 3.14
+        b. const Pi = math.Pi 
+        c. both a and b are correct
+        d. None of the above
+
+        Answer: c
+
+Short  variable declaration := can be used only inside a function. True or False?
+    True
+
+Short declaration := can be used for defining global variables. True or False?
+    False
+
+What's wrong with the following code?
+    1 package main
+    2
+    3 import "fmt"
+    4
+    5 func main() {
+    6
+    7    var a int8 = 3
+    8
+    9    var b int16 = 4
+    10
+    11    sum := a + b
+    12
+    13    fmt.Println(sum)
+    14 }
+
+    Compile time error, you'll get the following message:
+    invalid operation: a + b (mismatched types int8 and int16)
+
+    Note - Though int8 and int16 are similar in nature they are two distinct types. One of the
+    variables must be converted explicitly so that both the variables are of same type.
+
+    How can you rectify the above code?
+
+    11 sum := a + int8(b)
+
+What's the output of following code?
+package main
+
+import "fmt"
+ const ( 
+       i = iota
+       j 
+       k 
+ )
+func main() {
+ fmt.Println(i, j, k)
+}
+
+    0 1 2
+
+What's the output of following code?
+package main
+
+import "fmt"
+ const ( 
+       i = 7
+       j 
+       k 
+ )
+func main() {
+ fmt.Println(i, j, k)
+}
+
+    7 7 7
+
+Refer code snippet Ref12A and Ref12B. They have the same output. True or False?
+Ref12A:
+package main
+
+import "fmt"
+
+const(
+    p = iota  
+    q = iota  
+    r = iota        
+)
+
+func main() {
+    fmt.Println(p, q, r)
+}
+Ref12B
+package main
+
+import "fmt"
+
+const ( 
+   p, q, r = iota, iota, iota 
+)
+
+func main() {
+    fmt.Println(p, q, r)
+}
+
+    False. Different outputs
+    12A: 0 1 2
+    12B: 0 0 0 
+
+Arrays are value types i.e. in case of arrays as arguments, functions get their copies instead of a reference. True or False?
+
+    True
+
+Slices are reference type - the variable are stored in the heap? True or False?
+
+    True
+
+What's the output of following code?
+package main
+
+import "fmt"
+
+func main() {
+    
+ oddSlc := []int{1,3,5,7}     
+ evenSlc := []int{2,4,6,8}
+ copy(evenSlc, oddSlc[2:])    
+ fmt.Println("evenSlc = ", evenSlc)
+}
+
+    evenSlc =  [5 7 6 8]
+
+Maps are value types. True or False?
+    False, Maps are Reference types
+
+Is it recommended to use Global Variables in a program that implements Go routines?
+    Global variables are not recommended as they may get accessed by multiple go routines (threads) concurrently 
+    that can easily lead to an unexpected behavior causing arbitrary results. 
+
+Which of the following is NOT a valid Go identifier?
+
+           a. _score2016
+           b. 2016_Score
+           c. गगन
+           d. गगनSky
+
+           Answer: b
+
+In idiomatic Go code package names are all in lower case. Do you agree?
+
+    Yes. A few OS may not be able to handle mixed case names of packages.
+
+renderHtml - is it an idiomatic Go variable name?
+    No. renderHTML is a better choice. 
+    Andrew Gerrand suggests: Acronyms should be all capitals, as in ServeHTTP and IDProcessor.
+
+In Go there's no concept of uninitialized variable. True or False?
+    True
+
+What is the initial value (zero value) for interfaces, slice, pointers, maps, channels and functions?
+
+    nil
+
+What is the output of the following code snippet?
+package main
+
+import "fmt"
+
+func main() {
+ var i, j int
+ fmt.Println(&i == &i, &i == &j, &j == nil)
+}
+
+    true false false
